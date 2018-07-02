@@ -4,10 +4,6 @@
 
 #include "registry.h"
 
-Schedule::Schedule()
-{
-}
-
 float Schedule::getWorkingHours(const QDate &fromDate, const QDate &toDate) const
 {
     float total = 0.f;

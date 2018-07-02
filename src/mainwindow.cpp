@@ -21,6 +21,7 @@ MainWindow::MainWindow(QWidget *parent)
     catch (const std::exception &ex)
     {
         qDebug() << ex.what();
+        // TODO: Generate default config file, and ask user to modify it
     }
 
     // Load data, if it exists
