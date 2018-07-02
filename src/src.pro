@@ -20,3 +20,6 @@ HEADERS += \
     schedule.h \
     mainwindow.h \
     dialog_add_shift.h
+
+RESOURCES += \
+    ../resources.qrc

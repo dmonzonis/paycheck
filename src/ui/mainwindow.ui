@@ -95,6 +95,18 @@
     </item>
    </layout>
   </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionCalculate"/>
+   <addaction name="actionPrint"/>
+   <addaction name="actionConfig"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
@@ -105,17 +117,52 @@
     </rect>
    </property>
   </widget>
-  <widget class="QToolBar" name="mainToolBar">
-   <attribute name="toolBarArea">
-    <enum>TopToolBarArea</enum>
-   </attribute>
-   <attribute name="toolBarBreak">
-    <bool>false</bool>
-   </attribute>
-  </widget>
-  <widget class="QStatusBar" name="statusBar"/>
+  <action name="actionPrint">
+   <property name="icon">
+    <iconset resource="../../resources.qrc">
+     <normaloff>:/res/print_icon.png</normaloff>:/res/print_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Imprimir</string>
+   </property>
+   <property name="toolTip">
+    <string>Crear PDF con los horarios entre dos fechas</string>
+   </property>
+   <property name="shortcut">
+    <string>I</string>
+   </property>
+  </action>
+  <action name="actionCalculate">
+   <property name="icon">
+    <iconset resource="../../resources.qrc">
+     <normaloff>:/res/calculator_icon.png</normaloff>:/res/calculator_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Calcular</string>
+   </property>
+   <property name="toolTip">
+    <string>Calcular horas de trabajo y sueldo entre dos fechas</string>
+   </property>
+   <property name="shortcut">
+    <string>C</string>
+   </property>
+  </action>
+  <action name="actionConfig">
+   <property name="icon">
+    <iconset resource="../../resources.qrc">
+     <normaloff>:/res/configuration_icon.png</normaloff>:/res/configuration_icon.png</iconset>
+   </property>
+   <property name="text">
+    <string>Configuración</string>
+   </property>
+   <property name="toolTip">
+    <string>Editar configuración y datos</string>
+   </property>
+  </action>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="../../resources.qrc"/>
+ </resources>
  <connections/>
 </ui>
