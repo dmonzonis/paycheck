@@ -1,5 +1,9 @@
 #include "schedule.h"
 
+#include <fstream>
+
+#include "registry.h"
+
 Schedule::Schedule()
 {
 }
@@ -62,4 +66,36 @@ void Schedule::removeShift(const QDate &date, int index)
         // Update the shift in the hash
         workingDays.insert(date, shifts);
     }
+}
+
+Schedule Schedule::loadSchedule()
+{
+    // Create new empty schedule
+    Schedule schedule;
+
+    // Open data file
+    // TODO: Search for file in the executable absolute path
+    std::ifstream dataFile(DATA_FILENAME);
+    if (!dataFile)
+    {
+        // TODO: Make registry error class
+        throw std::runtime_error("Error opening data file.");
+    }
+    std::string input, delimiter=",";
+    while (std::getline(dataFile, input))
+    {
+        // Parse data in the line
+        // Schedule data is stored as date,entryTime,exitTime
+        auto parts = split(input, delimiter);
+        QDate date = QDate::fromString(parts.at(0), DATE_FORMAT);
+        QTime entryTime = QTime::fromString(parts.at(1), TIME_FORMAT);
+        QTime exitTime = QTime::fromString(parts.at(2), TIME_FORMAT);
+        // Add shift to the schedule
+        schedule.addShift(date, entryTime, exitTime);
+    }
+}
+
+void Schedule::saveSchedule()
+{
+    // TODO: Implement
 }

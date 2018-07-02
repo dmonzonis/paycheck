@@ -3,6 +3,7 @@
 
 #include <QMainWindow>
 
+#include "registry.h"
 #include "schedule.h"
 
 namespace Ui {
@@ -28,6 +29,7 @@ private:
 
 private:
     Ui::MainWindow *ui;
+    Registry registry;
     Schedule schedule;
     QDate selectedDate;
 };

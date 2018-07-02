@@ -2,6 +2,7 @@
 #define DIALOG_CALCULATE_H
 
 #include <QDialog>
+#include <QString>
 
 #include "schedule.h"
 
@@ -13,7 +14,8 @@ class DialogCalculate : public QDialog
 {
     Q_OBJECT
 public:
-    explicit DialogCalculate(QWidget *parent = 0, const Schedule &schedule = Schedule());
+    explicit DialogCalculate(QWidget *parent = 0, const Schedule &schedule = Schedule(),
+                             float hourlyWage = 0.f, QString currency = "$");
     ~DialogCalculate();
 
 private slots:
@@ -27,6 +29,8 @@ private:
 private:
     Ui::DialogCalculate *ui;
     const Schedule schedule;
+    float hourlyWage;
+    QString currency;
 };
 
 #endif // DIALOG_CALCULATE_H

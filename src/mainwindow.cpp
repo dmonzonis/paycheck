@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 #include <QTime>
+#include <QDebug>
 
 #include "dialog_add_shift.h"
 #include "dialog_calculate.h"
@@ -11,6 +12,17 @@ MainWindow::MainWindow(QWidget *parent)
       ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+    // Load registry
+    try
+    {
+        registry.loadData();
+    }
+    catch (const std::exception &ex)
+    {
+        qDebug() << ex.what();
+    }
+
     updateSelectedDay();
 }
 
@@ -66,6 +78,9 @@ void MainWindow::updateSelectedDay()
 
 void MainWindow::on_actionCalculate_triggered()
 {
-    DialogCalculate *dialog = new DialogCalculate(this, schedule);
+    DialogCalculate *dialog = new DialogCalculate(this,
+                                                  schedule,
+                                                  registry.getHourlyWage(),
+                                                  registry.getCurrency());
     dialog->show();
 }

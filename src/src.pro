@@ -15,14 +15,16 @@ SOURCES += \
     schedule.cpp \
     mainwindow.cpp \
     dialog_add_shift.cpp \
-    dialog_calculate.cpp
+    dialog_calculate.cpp \
+    registry.cpp
 
 HEADERS += \
     shift.h \
     schedule.h \
     mainwindow.h \
     dialog_add_shift.h \
-    dialog_calculate.h
+    dialog_calculate.h \
+    registry.h
 
 RESOURCES += \
     ../resources.qrc

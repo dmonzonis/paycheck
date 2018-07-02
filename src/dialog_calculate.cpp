@@ -3,10 +3,13 @@
 
 #include <QDate>
 
-DialogCalculate::DialogCalculate(QWidget *parent, const Schedule &schedule) :
-    QDialog(parent),
+DialogCalculate::DialogCalculate(QWidget *parent, const Schedule &schedule,
+                                 float hourlyWage, QString currency)
+    : QDialog(parent),
     ui(new Ui::DialogCalculate),
-    schedule(schedule)
+    schedule(schedule),
+    hourlyWage(hourlyWage),
+    currency(currency)
 {
     ui->setupUi(this);
     // Set dates to current date
@@ -40,6 +43,9 @@ void DialogCalculate::updateResults()
     QDate dateFrom = ui->dateFrom->date();
     QDate dateTo = ui->dateTo->date();
     float hours = schedule.getWorkingHours(dateFrom, dateTo);
+    // Compute salary
+    float salary = hours * hourlyWage;
     // Update with results
     ui->resultHours->setText(QString::number(hours) + " h");
+    ui->resultSalary->setText(QString::number(salary) + " " + currency);
 }

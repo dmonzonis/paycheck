@@ -17,6 +17,8 @@ public:
     void addShift(const QDate &date, const QTime &entryTime, const QTime &exitTime);
     std::vector<std::string> getShiftStrings(const QDate &date) const;
     void removeShift(const QDate &date, int index);
+    static Schedule loadSchedule();
+    void saveSchedule();
 
 private:
     QHash<QDate, std::vector<Shift>> workingDays;
