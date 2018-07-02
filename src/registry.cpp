@@ -31,13 +31,29 @@ void Registry::loadData()
     valid = true;
 }
 
+void Registry::writeData() const
+{
+    if (!isValid())
+    {
+        // TODO: Make registry error class
+        throw std::runtime_error("Registry not initialized.");
+    }
+    std::ofstream configFile(CONFIG_FILENAME);
+    // Iterate through all the config keys and variables, and write them to file
+    for (auto it = config.begin(); it != config.end(); ++it)
+    {
+        configFile << it.key().toStdString() << "=" << it.value().toStdString() << "\n";
+    }
+}
+
 float Registry::getHourlyWage() const
 {
     if (!isValid())
     {
+        // TODO: Make registry error class
         throw std::runtime_error("Registry not initialized.");
     }
-    return config.value("hourly_wage").toFloat();
+    return config.value(HOURLY_WAGE).toFloat();
 }
 
 QString Registry::getCurrency() const
@@ -46,13 +62,23 @@ QString Registry::getCurrency() const
     {
         throw std::runtime_error("Registry not initialized.");
     }
-    return config.value("currency");
+    return config.value(CURRENCY);
 }
 
 Registry::Language Registry::getLanguage() const
 {
     // TODO: Get language from config file and translate to enum
     return Language::ES;
+}
+
+void Registry::setHourlyWage(float wage)
+{
+    config.insert(HOURLY_WAGE, QString::number(wage));
+}
+
+void Registry::setCurrency(QString currency)
+{
+    config.insert(CURRENCY, currency);
 }
 
 std::vector<QString> split(std::string s, std::string delimiter)

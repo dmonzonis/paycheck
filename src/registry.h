@@ -12,6 +12,10 @@ const std::string DATA_FILENAME = "schedule.data";
 // Format constants for saved data
 const QString DATE_FORMAT = "dd/MM/yyyy";
 const QString TIME_FORMAT = "hh:mm";
+// Names for config variables
+const QString HOURLY_WAGE = "wage";
+const QString CURRENCY = "curr";
+const QString LANGUAGE = "lang";
 
 /**
  * @brief The Registry class retrieves and holds information about the configuration variables
@@ -51,10 +55,22 @@ public:
      */
     void loadData();
 
+    /**
+     * @brief Writes the current registry's data to the config file, overwriting the old config
+     * file.
+     *
+     * The registry needs to be valid, otherwise it will throw an error.
+     */
+    void writeData() const;
+
     // Getters for config variables
     float getHourlyWage() const;
     QString getCurrency() const;
     Language getLanguage() const;
+
+    // Setters for the config variables
+    void setHourlyWage(float wage);
+    void setCurrency(QString currency);
 
 private:
     QHash<QString, QString> config;
