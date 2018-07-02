@@ -21,6 +21,7 @@ private slots:
     void on_calendar_selectionChanged();
     void on_btnAddShift_clicked();
     void on_btnRemoveShift_clicked();
+    void on_actionCalculate_triggered();
 
 private:
     void updateSelectedDay();

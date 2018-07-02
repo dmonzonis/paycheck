@@ -4,6 +4,7 @@
 #include <QTime>
 
 #include "dialog_add_shift.h"
+#include "dialog_calculate.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -61,4 +62,10 @@ void MainWindow::updateSelectedDay()
     {
         ui->listShift->addItem(QString::fromStdString(shiftString));
     }
+}
+
+void MainWindow::on_actionCalculate_triggered()
+{
+    DialogCalculate *dialog = new DialogCalculate(this, schedule);
+    dialog->show();
 }
