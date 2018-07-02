@@ -5,10 +5,6 @@
 #include <QDate>
 #include <QTime>
 
-Registry::Registry()
-{
-}
-
 bool Registry::isValid() const
 {
     return valid;
