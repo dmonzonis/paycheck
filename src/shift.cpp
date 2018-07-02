@@ -11,6 +11,16 @@ float Shift::getWorkingHours() const
     return entryTime.msecsTo(exitTime) / (1000.f * 60 * 60);
 }
 
+QTime Shift::getEntryTime() const
+{
+    return entryTime;
+}
+
+QTime Shift::getExitTime() const
+{
+    return exitTime;
+}
+
 std::string Shift::toString() const
 {
     std::string result = "";

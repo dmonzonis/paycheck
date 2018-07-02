@@ -23,6 +23,16 @@ MainWindow::MainWindow(QWidget *parent)
         qDebug() << ex.what();
     }
 
+    // Load data, if it exists
+    try
+    {
+        schedule = Schedule::loadSchedule();
+    }
+    catch (const std::exception &ex)
+    {
+        qDebug() << ex.what();
+    }
+
     updateSelectedDay();
 }
 
@@ -50,6 +60,8 @@ void MainWindow::on_btnAddShift_clicked()
     {
         addShift(dialog->getEntryTime(), dialog->getExitTime());
         updateSelectedDay();
+        // Save new data to file
+        schedule.saveSchedule();
     }
     delete dialog;
 }
@@ -61,6 +73,8 @@ void MainWindow::on_btnRemoveShift_clicked()
     int selectedShiftIndex = ui->listShift->currentRow();
     // Remove the selected shift from the schedule
     schedule.removeShift(selectedDate, selectedShiftIndex);
+    // Save new data to file
+    schedule.saveSchedule();
     updateSelectedDay();
 }
 

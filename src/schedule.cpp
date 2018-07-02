@@ -93,9 +93,22 @@ Schedule Schedule::loadSchedule()
         // Add shift to the schedule
         schedule.addShift(date, entryTime, exitTime);
     }
+    return schedule;
 }
 
 void Schedule::saveSchedule()
 {
-    // TODO: Implement
+    std::ofstream dataFile(DATA_FILENAME);
+    // Iterate through all shifts, and save them to file
+    for (auto it = workingDays.begin(); it != workingDays.end(); ++it)
+    {
+        std::string date = it.key().toString(DATE_FORMAT).toStdString();
+        for (Shift shift : it.value())
+        {
+            std::string entryTime = shift.getEntryTime().toString(TIME_FORMAT).toStdString();
+            std::string exitTime = shift.getExitTime().toString(TIME_FORMAT).toStdString();
+            // Write the shift to the file
+            dataFile << date << "," << entryTime << "," << exitTime << "\n";
+        }
+    }
 }

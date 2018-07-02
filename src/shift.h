@@ -8,6 +8,8 @@ class Shift
 public:
     Shift(QTime entryTime, QTime exitTime);
     float getWorkingHours() const;
+    QTime getEntryTime() const;
+    QTime getExitTime() const;
     std::string toString() const;
 
 private:
