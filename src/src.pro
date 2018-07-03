@@ -8,6 +8,8 @@ TEMPLATE = lib
 TARGET = paycheck
 SUBDIRS += ui
 
+src.commands += $${QMAKE_MKDIR} $$BUILDDIR
+
 FORMS += ui/*.ui
 
 SOURCES += \
