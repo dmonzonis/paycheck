@@ -14,18 +14,19 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // Load registry
+    // Load registry, or create a default one if it doesn't exist
     try
     {
         registry.loadData();
     }
     catch (const std::exception &ex)
     {
-        qDebug() << ex.what();
-        // TODO: Generate default config file, and ask user to modify it
+        qDebug() << ex.what() << "Generating default config file.";
+        registry.generateDefaultConfigFile();
+        registry.loadData();
     }
 
-    // Load data, if it exists
+    // Load schedule data, if it exists
     try
     {
         schedule = Schedule::loadSchedule();
@@ -94,6 +95,7 @@ void MainWindow::updateSelectedDay()
 
 void MainWindow::on_actionCalculate_triggered()
 {
+    // Open calculate dialog
     DialogCalculate *dialog = new DialogCalculate(this,
                                                   schedule,
                                                   registry.getHourlyWage(),
@@ -103,6 +105,7 @@ void MainWindow::on_actionCalculate_triggered()
 
 void MainWindow::on_actionPrint_triggered()
 {
+    // Open print dialog
     DialogPrint *dialog = new DialogPrint(this, schedule);
     dialog->show();
 }

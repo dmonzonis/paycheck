@@ -18,7 +18,7 @@ void Registry::loadData()
     if (!configFile)
     {
         // TODO: Make registry error class
-        throw std::runtime_error("Error opening config file");
+        throw std::runtime_error("Config file not found.");
     }
     std::string input, delimiter = "=";
     while (std::getline(configFile, input))
@@ -53,9 +53,9 @@ void Registry::generateDefaultConfigFile() const
     std::ofstream configFile(CONFIG_FILENAME);
     // Add default hardcoded values
     // TODO: Make method to format these automatically
-    configFile << HOURLY_WAGE.toStdString() << "=" << "6";
-    configFile << CURRENCY.toStdString() << "=" << "€";
-    configFile << LANGUAGE.toStdString() << "=" << "es";
+    configFile << HOURLY_WAGE.toStdString() << "=" << "6" << "\n";
+    configFile << CURRENCY.toStdString() << "=" << "€" << "\n";
+    configFile << LANGUAGE.toStdString() << "=" << "es" << "\n";
 }
 
 float Registry::getHourlyWage() const

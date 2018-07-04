@@ -81,7 +81,7 @@ Schedule Schedule::loadSchedule()
     if (!dataFile)
     {
         // TODO: Make registry error class
-        throw std::runtime_error("Error opening data file.");
+        throw std::runtime_error("Data file not found.");
     }
     std::string input, delimiter=",";
     while (std::getline(dataFile, input))

@@ -132,7 +132,6 @@
    </attribute>
    <addaction name="actionCalculate"/>
    <addaction name="actionPrint"/>
-   <addaction name="actionConfig"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <widget class="QMenuBar" name="menuBar">
