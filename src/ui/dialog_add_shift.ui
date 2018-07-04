@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>297</width>
-    <height>181</height>
+    <width>263</width>
+    <height>182</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -27,7 +27,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QTimeEdit" name="timeFrom"/>
+      <widget class="QTimeEdit" name="timeFrom">
+       <property name="displayFormat">
+        <string>HH:mm</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
@@ -44,7 +48,11 @@
       </widget>
      </item>
      <item>
-      <widget class="QTimeEdit" name="timeTo"/>
+      <widget class="QTimeEdit" name="timeTo">
+       <property name="displayFormat">
+        <string>HH:mm</string>
+       </property>
+      </widget>
      </item>
     </layout>
    </item>
