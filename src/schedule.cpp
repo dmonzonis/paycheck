@@ -71,6 +71,7 @@ Schedule Schedule::loadSchedule()
 
     // Open data file
     // TODO: Search for file in the executable absolute path
+    // TODO: Use QFile instead of fstream
     std::ifstream dataFile(DATA_FILENAME);
     if (!dataFile)
     {
@@ -94,6 +95,7 @@ Schedule Schedule::loadSchedule()
 
 void Schedule::saveSchedule()
 {
+    // TODO: Use QFile instead of fstream
     std::ofstream dataFile(DATA_FILENAME);
     // Iterate through all shifts, and save them to file
     for (auto it = workingDays.begin(); it != workingDays.end(); ++it)

@@ -63,6 +63,11 @@ public:
      */
     void writeData() const;
 
+    /**
+     * @brief Generates a default config file, overriding the existing one if there's any.
+     */
+    void generateDefaultConfigFile() const;
+
     // Getters for config variables
     float getHourlyWage() const;
     QString getCurrency() const;
