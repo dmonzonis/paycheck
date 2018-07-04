@@ -159,8 +159,7 @@ QString Schedule::toHtml(const QDate &dateFrom, const QDate &dateTo) const
         if (workingDays.contains(current))
         {
             // Add date in bold text to the left of the page
-            // TODO: Change format
-            html += "<b>" + current.toString() + "</b>";
+            html += "<b>" + current.toString("dd/MM/yyyy") + "</b>";
             // Iterate through all shifts and print them
             for (auto shift : workingDays.value(current))
             {
