@@ -1,14 +1,19 @@
 #include "schedule.h"
 
 #include <fstream>
+#include <QFileDialog>
+#include <QPrinter>
+#include <QString>
+#include <QTextDocument>
 
 #include "registry.h"
 
-float Schedule::getWorkingHours(const QDate &fromDate, const QDate &toDate) const
+float Schedule::getWorkingHours(const QDate &dateFrom, const QDate &dateTo) const
 {
     float total = 0.f;
-    QDate current = fromDate;
-    while (current <= toDate)
+    // Iterate between all dates one by one, adding the working hours if it has any shifts
+    QDate current = dateFrom;
+    while (current <= dateTo)
     {
         // Add the working hours of the current day
         total += getWorkingHours(current);
@@ -109,4 +114,67 @@ void Schedule::saveSchedule()
             dataFile << date << "," << entryTime << "," << exitTime << "\n";
         }
     }
+}
+
+void Schedule::printSchedule(const QDate &dateFrom, const QDate &dateTo) const
+{
+    // Ask user for filename
+    QString filename = QFileDialog::getSaveFileName(
+                nullptr,
+                "Exportar a PDF",
+                QString(),
+                "*.pdf"
+                );
+
+    // Append pdf extension if user didn't provide it
+    if (QFileInfo(filename).suffix().isEmpty())
+    {
+        filename.append(".pdf");
+    }
+
+    // Initialize printer
+    QPrinter printer(QPrinter::PrinterResolution);
+    printer.setOutputFormat(QPrinter::PdfFormat);
+    printer.setPaperSize(QPrinter::A4);
+    printer.setOutputFileName(filename);
+
+    // Get HTML and format text document
+    QString html = toHtml(dateFrom, dateTo);
+    QTextDocument doc;
+    doc.setHtml(html);
+    doc.setPageSize(printer.pageRect().size());
+
+    // Print the document to pdf
+    doc.print(&printer);
+}
+
+QString Schedule::toHtml(const QDate &dateFrom, const QDate &dateTo) const
+{
+    QString html;
+    // Iterate between the dates, adding formatted HTML representing the shifts
+    QDate current = dateFrom;
+    while (current <= dateTo)
+    {
+        // Only add working days to the HTML
+        if (workingDays.contains(current))
+        {
+            // Add date in bold text to the left of the page
+            // TODO: Change format
+            html += "<b>" + current.toString() + "</b>";
+            // Iterate through all shifts and print them
+            for (auto shift : workingDays.value(current))
+            {
+                // Put it into a center-aligned paragraph
+                html += "<p align=\"center\">";
+                html += QString::fromStdString(shift.toString()) + "<br>";
+                html += "</p>";
+            }
+            // Add a horizontal bar at the end of the day
+            html += "<hr>";
+        }
+
+        // Advance one day
+        current = current.addDays(1);
+    }
+    return html;
 }

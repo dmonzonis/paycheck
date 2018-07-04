@@ -23,6 +23,7 @@ private slots:
     void on_btnAddShift_clicked();
     void on_btnRemoveShift_clicked();
     void on_actionCalculate_triggered();
+    void on_actionPrint_triggered();
 
 private:
     void updateSelectedDay();

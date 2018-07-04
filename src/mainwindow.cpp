@@ -6,6 +6,7 @@
 
 #include "dialog_add_shift.h"
 #include "dialog_calculate.h"
+#include "dialog_print.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -97,5 +98,11 @@ void MainWindow::on_actionCalculate_triggered()
                                                   schedule,
                                                   registry.getHourlyWage(),
                                                   registry.getCurrency());
+    dialog->show();
+}
+
+void MainWindow::on_actionPrint_triggered()
+{
+    DialogPrint *dialog = new DialogPrint(this, schedule);
     dialog->show();
 }

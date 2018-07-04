@@ -23,7 +23,7 @@ public:
      * It will take into account all the shifts in the dates that are within the range, and
      * add them up for a total of working hours.
      */
-    float getWorkingHours(const QDate &fromDate, const QDate &toDate) const;
+    float getWorkingHours(const QDate &dateFrom, const QDate &dateTo) const;
 
     /**
      * @brief Return the total working hours on a single date.
@@ -70,6 +70,19 @@ public:
      * The filename of the data file is given by the constants defined in the registry header.
      */
     void saveSchedule();
+
+    /**
+     * @brief Print the schedule between two given dates to PDF format.
+     * @param dateFrom Starting date for the printed schedule. It will be included.
+     * @param dateTo End date for the printed schedule. It will be included.
+     */
+    void printSchedule(const QDate &dateFrom, const QDate &dateTo) const;
+
+private:
+    /**
+     * @brief Return the schedule between two dates in HTML format, ready for printing.
+     */
+    QString toHtml(const QDate &dateFrom, const QDate &dateTo) const;
 
 private:
     QHash<QDate, std::vector<Shift>> workingDays;

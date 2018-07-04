@@ -1,7 +1,7 @@
 include(../defaults.pri)
 
 QT += core gui
-QT += widgets
+QT += widgets printsupport
 
 TEMPLATE = lib
 
@@ -18,7 +18,8 @@ SOURCES += \
     mainwindow.cpp \
     dialog_add_shift.cpp \
     dialog_calculate.cpp \
-    registry.cpp
+    registry.cpp \
+    dialog_print.cpp
 
 HEADERS += \
     shift.h \
@@ -26,7 +27,8 @@ HEADERS += \
     mainwindow.h \
     dialog_add_shift.h \
     dialog_calculate.h \
-    registry.h
+    registry.h \
+    dialog_print.h
 
 RESOURCES += \
     ../resources.qrc
