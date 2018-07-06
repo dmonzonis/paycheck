@@ -24,6 +24,7 @@ private slots:
     void on_btnRemoveShift_clicked();
     void on_actionCalculate_triggered();
     void on_actionPrint_triggered();
+    void on_actionConfig_triggered();
 
 private:
     void updateSelectedDay();

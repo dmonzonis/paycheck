@@ -1,12 +1,15 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 
+#include <QDesktopServices>
 #include <QTime>
+#include <QUrl>
 #include <QDebug>
 
 #include "dialog_add_shift.h"
 #include "dialog_calculate.h"
 #include "dialog_print.h"
+#include "registry.h"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent),
@@ -108,4 +111,10 @@ void MainWindow::on_actionPrint_triggered()
     // Open print dialog
     DialogPrint *dialog = new DialogPrint(this, schedule);
     dialog->show();
+}
+
+void MainWindow::on_actionConfig_triggered()
+{
+    // TODO: Use a custom config dialog to change configuration instead of opening the text file
+    QDesktopServices::openUrl(QUrl(QString::fromStdString(CONFIG_FILENAME)));
 }
