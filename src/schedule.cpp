@@ -116,7 +116,8 @@ void Schedule::saveSchedule()
     }
 }
 
-void Schedule::printSchedule(const QDate &dateFrom, const QDate &dateTo) const
+void Schedule::printSchedule(const QDate &dateFrom, const QDate &dateTo,
+                             bool printHours, bool compactMode) const
 {
     // Ask user for filename
     QString filename = QFileDialog::getSaveFileName(
@@ -137,9 +138,10 @@ void Schedule::printSchedule(const QDate &dateFrom, const QDate &dateTo) const
     printer.setOutputFormat(QPrinter::PdfFormat);
     printer.setPaperSize(QPrinter::A4);
     printer.setOutputFileName(filename);
+    printer.setPageMargins(12, 16, 12, 20, QPrinter::Millimeter);
 
     // Get HTML and format text document
-    QString html = toHtml(dateFrom, dateTo);
+    QString html = toHtml(dateFrom, dateTo, printHours, compactMode);
     QTextDocument doc;
     doc.setHtml(html);
     doc.setPageSize(printer.pageRect().size());
@@ -148,7 +150,8 @@ void Schedule::printSchedule(const QDate &dateFrom, const QDate &dateTo) const
     doc.print(&printer);
 }
 
-QString Schedule::toHtml(const QDate &dateFrom, const QDate &dateTo) const
+QString Schedule::toHtml(const QDate &dateFrom, const QDate &dateTo,
+                         bool printHours, bool compactMode) const
 {
     QString html;
     // Iterate between the dates, adding formatted HTML representing the shifts
@@ -163,17 +166,27 @@ QString Schedule::toHtml(const QDate &dateFrom, const QDate &dateTo) const
             // Iterate through all shifts and print them
             for (auto shift : workingDays.value(current))
             {
+                // TODO: Implement compactMode
                 // Put it into a center-aligned paragraph
-                html += "<p align=\"center\">";
-                html += QString::fromStdString(shift.toString()) + "<br>";
-                html += "</p>";
+                html += "<div align=\"center\">";
+                html += QString::fromStdString(shift.toString());
+                html += "</div>";
             }
             // Add a horizontal bar at the end of the day
             html += "<hr>";
         }
-
         // Advance one day
         current = current.addDays(1);
     }
+
+    // Print total working hours at the end if needed
+    if (printHours)
+    {
+        float totalHours = getWorkingHours(dateFrom, dateTo);
+        html += "<p align=\"right\"><b>";
+        html += "Total: " + QString::number(totalHours) + " h";
+        html += "</b></p>";
+    }
+
     return html;
 }

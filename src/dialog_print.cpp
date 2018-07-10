@@ -19,6 +19,9 @@ DialogPrint::~DialogPrint()
 
 void DialogPrint::on_btnPrint_clicked()
 {
-    schedule.printSchedule(ui->dateFrom->date(), ui->dateTo->date());
+    bool printHours = ui->cbTotalHours->isChecked();
+    bool compactMode = ui->cbCompactMode->isChecked();
+    schedule.printSchedule(ui->dateFrom->date(), ui->dateTo->date(),
+                           printHours, compactMode);
     this->close();
 }

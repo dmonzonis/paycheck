@@ -75,14 +75,20 @@ public:
      * @brief Print the schedule between two given dates to PDF format.
      * @param dateFrom Starting date for the printed schedule. It will be included.
      * @param dateTo End date for the printed schedule. It will be included.
+     * @param printHours If true, it will print the total working hours between the two
+     * dates at the end of the document.
+     * @param compactMode If true, it will print the document in compact mode,
+     * using less total lines by putting the shifts next to the date.
      */
-    void printSchedule(const QDate &dateFrom, const QDate &dateTo) const;
+    void printSchedule(const QDate &dateFrom, const QDate &dateTo,
+                       bool printHours = false, bool compactMode = false) const;
 
 private:
     /**
      * @brief Return the schedule between two dates in HTML format, ready for printing.
      */
-    QString toHtml(const QDate &dateFrom, const QDate &dateTo) const;
+    QString toHtml(const QDate &dateFrom, const QDate &dateTo,
+                   bool printHours = false, bool compactMode = false) const;
 
 private:
     QHash<QDate, std::vector<Shift>> workingDays;

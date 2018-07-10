@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>211</width>
-    <height>227</height>
+    <width>219</width>
+    <height>219</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -61,6 +61,20 @@
       </widget>
      </item>
     </layout>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="cbTotalHours">
+     <property name="text">
+      <string>Imprimir total horas</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QCheckBox" name="cbCompactMode">
+     <property name="text">
+      <string>Modo compacto</string>
+     </property>
+    </widget>
    </item>
    <item>
     <layout class="QHBoxLayout" name="horizontalLayout_3">
