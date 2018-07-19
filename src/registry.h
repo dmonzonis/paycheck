@@ -15,7 +15,6 @@ const QString TIME_FORMAT = "hh:mm";
 // Names for config variables
 const QString HOURLY_WAGE = "wage";
 const QString CURRENCY = "curr";
-const QString LANGUAGE = "lang";
 
 /**
  * @brief The Registry class retrieves and holds information about the configuration variables
@@ -27,12 +26,6 @@ const QString LANGUAGE = "lang";
  */
 class Registry
 {
-public:
-    /**
-     * @brief The Language enum represents a language for the program to be shown in.
-     */
-    enum Language {ES};
-
 public:
 
     Registry() = default;
@@ -71,7 +64,6 @@ public:
     // Getters for config variables
     float getHourlyWage() const;
     QString getCurrency() const;
-    Language getLanguage() const;
 
     // Setters for the config variables
     void setHourlyWage(float wage);

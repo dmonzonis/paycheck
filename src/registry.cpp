@@ -55,7 +55,6 @@ void Registry::generateDefaultConfigFile() const
     // TODO: Make method to format these automatically
     configFile << HOURLY_WAGE.toStdString() << "=" << "6" << "\n";
     configFile << CURRENCY.toStdString() << "=" << "€" << "\n";
-    configFile << LANGUAGE.toStdString() << "=" << "es" << "\n";
 }
 
 float Registry::getHourlyWage() const
@@ -75,12 +74,6 @@ QString Registry::getCurrency() const
         throw std::runtime_error("Registry not initialized.");
     }
     return config.value(CURRENCY);
-}
-
-Registry::Language Registry::getLanguage() const
-{
-    // TODO: Get language from config file and translate to enum
-    return Language::ES;
 }
 
 void Registry::setHourlyWage(float wage)
