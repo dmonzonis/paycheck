@@ -1,12 +1,13 @@
 #include <QtTest/QtTest>
 
-#include "testday.h"
-#include "testschedule.h"
+#include "test_schedule.h"
+#include "test_shift.h"
 
 int main()
 {
-    TestDay testDay;
-    QTest::qExec(&testDay);
+
+    TestShift testShift;
+    QTest::qExec(&testShift);
 
     TestSchedule testSchedule;
     QTest::qExec(&testSchedule);

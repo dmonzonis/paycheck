@@ -31,5 +31,3 @@ void TestShift::testToString()
     QVERIFY(!shiftString.empty());
     QCOMPARE(shiftString, "8:00 - 15:00");
 }
-
-QTEST_APPLESS_MAIN(TestShift)

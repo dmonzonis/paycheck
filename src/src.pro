@@ -1,18 +1,23 @@
-include(../defaults.pri)
-
 QT += core gui
 QT += widgets printsupport
 
-TEMPLATE = lib
+CONFIG += c++11
 
 TARGET = paycheck
-SUBDIRS += ui
-
-src.commands += $${QMAKE_MKDIR} $$BUILDDIR
+TEMPLATE = app
 
 FORMS += ui/*.ui
 
+BUILDDIR = $$PWD/../build
+DESTDIR = $$PWD/../bin
+
+OBJECTS_DIR = $$BUILDDIR
+MOC_DIR = $$BUILDDIR
+RCC_DIR = $$BUILDDIR
+UI_DIR = $$BUILDDIR
+
 SOURCES += \
+    main.cpp \
     shift.cpp \
     schedule.cpp \
     mainwindow.cpp \

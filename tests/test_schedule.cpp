@@ -70,7 +70,3 @@ void TestSchedule::testRemoveShiftEmpty()
     shiftStrings = schedule->getShiftStrings(date);
     QVERIFY(shiftStrings.empty());
 }
-
-
-
-QTEST_APPLESS_MAIN(TestSchedule)
